@@ -14,4 +14,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y g++
 
       - name: Compile main.cpp
-        run: g++ -O3 main.cpp -o bf
+        run: g++ -O3 src/main.cpp -o pass_maker
