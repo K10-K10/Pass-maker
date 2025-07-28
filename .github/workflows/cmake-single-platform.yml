@@ -12,6 +12,9 @@ jobs:
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y g++
-
-      - name: Compile main.cpp
-        run: g++ -O3 src/main.cpp -o pass_maker
+      - name: Install CMake
+        run: sudo apt-get update && sydo apt-get install -y cmake
+      - name: Create build file
+        run: mkdir build && cd build
+      - name: Run Cmake
+        run: cmake .. && make
