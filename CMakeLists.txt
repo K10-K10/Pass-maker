@@ -9,5 +9,6 @@ include_directories(include)
 file(GLOB_RECURSE SOURCES
     src/*.cpp
     include/**/*.cpp
+    include/**/*.hpp
 )
 add_executable(Pass-maker ${SOURCES})
