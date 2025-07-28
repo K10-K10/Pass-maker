@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y g++
       - name: Install CMake
-        run: sudo apt-get update && sydo apt-get install -y cmake
+        run: sudo apt-get update && sudo apt-get install -y cmake
       - name: Create build file
         run: mkdir build && cd build
       - name: Run Cmake
