@@ -11,10 +11,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y g++
-      - name: Install CMake
-        run: sudo apt-get update && sudo apt-get install -y cmake
-      - name: Create build file
-        run: mkdir build && cd build
-      - name: Run Cmake
-        run: cmake .. && make
+        run: sudo apt-get update && sudo apt-get install -y g++ cmake
+
+      - name: Create build directory
+        run: mkdir -p build
+
+      - name: Run CMake
+        working-directory: ./build
+        run: cmake ..
+
+      - name: Build with make
+        working-directory: ./build
+        run: make
