@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <string>
+#include <map>
 
 class Create
 {
@@ -17,7 +18,7 @@ private:
 			"abcdefghijklmnopqrstuvwxyz"
 			"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 			"!@#$%^&*";
-	const int zero_ascii = 48;
+	std::string custom_chars;
 	unsigned int pass_long = 0;
 	int cmd = 0;
 	std::random_device rng;
