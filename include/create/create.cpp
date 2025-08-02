@@ -9,7 +9,12 @@ int Create::input_length()
 {
 	std::cout << "length:";
 	std::cin >> Create::pass_long;
-	if (Create::pass_long < 4)
+	if (Create::pass_long == 0)
+	{
+		std::cout << "Above 0" << std::endl;
+		return 1;
+	}
+	else if (Create::pass_long < 4)
 	{
 		std::cout << "Password is to short.Do you create?(y,n):";
 		char input = 'n';
@@ -27,6 +32,7 @@ std::string Create::pass_creator()
 {
 	std::cout << "Please select mode\n1 - number | 2 - number & alphabet | 3 - number,alphabet & mark | 4 - custom | other - exit:";
 	std::cin >> Create::cmd;
+	Create::pass = "`";
 	switch (Create::cmd)
 	{
 	case 1:
@@ -123,7 +129,6 @@ std::string Create::pass_creator()
 	{
 		std::cout << "Exit" << std::endl;
 		return Create::pass;
-		break;
 	};
 		return 0;
 	}
