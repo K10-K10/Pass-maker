@@ -1,13 +1,9 @@
-// #include "check/check.hpp"
-#include "create/create.hpp"
+#include "home/home.hpp"
 
 int main()
 {
-	Create create;
+	Home home;
 	std::string pass;
-	while (true)
-	{
-		pass = create.pass_creator();
-	}
+	home.home_event();
 	return 0;
 }
