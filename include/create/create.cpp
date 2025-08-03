@@ -130,6 +130,5 @@ std::string Create::pass_creator()
 		std::cout << "Exit" << std::endl;
 		return Create::pass;
 	};
-		return 0;
 	}
 }
