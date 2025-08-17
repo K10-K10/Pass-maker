@@ -30,9 +30,9 @@ int Create::input_length()
 
 std::string Create::pass_creator()
 {
-	std::cout << "Please select mode\n1 - number | 2 - number & alphabet | 3 - number,alphabet & mark | 4 - custom | other - exit:";
+	std::cout << "Create>" << std::flush;
 	std::cin >> Create::cmd;
-	Create::pass = "`";
+	Create::pass = "";
 	switch (Create::cmd)
 	{
 	case 1:
@@ -131,4 +131,5 @@ std::string Create::pass_creator()
 		return Create::pass;
 	};
 	}
+	return 0;
 }
