@@ -43,6 +43,7 @@
 /CMakeFiles/
 /CMakeCache.txt
 build.sh
+run.sh
 .vscode
 
 rockyou.txt
