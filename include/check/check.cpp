@@ -8,7 +8,14 @@ int Check_lockyou::check_script(std::string check_pass)
 {
 	std::string cmd = script_path + " " + check_pass;
 	script_return_value = system(cmd.c_str());
-	return 0;
+	if (script_return_value == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
 }
 
 Check_repeat::Check_repeat()
@@ -33,7 +40,7 @@ int Check_repeat::check_repeat_fn(std::string check_pass)
 	if (ans >= 0.3)
 	{
 		std::cout << "\033[31mX\033[0m" << std::endl;
-		return 256;
+		return 1;
 	}
 	else
 	{
