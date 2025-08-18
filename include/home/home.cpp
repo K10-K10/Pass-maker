@@ -10,7 +10,9 @@ void Home::home_event()
 {
 	Create create;
 	Check_lockyou check_lockyou;
-	std::cout << "1 - Create pass | 2 - Pass check | other - Exit" << std::endl;
+	Check_repeat check_repeat;
+	std::cout
+			<< "1 - Create pass | 2 - Pass check | other - Exit" << std::endl;
 	while (loop_flag)
 	{
 		std::cout << ">" << std::flush;
@@ -25,7 +27,11 @@ void Home::home_event()
 		}
 		case 2:
 		{
-			int cmd_return = check_lockyou.check_script();
+			std::string check_pass;
+			std::cout << "Checker>Password to be confirmed:" << std::flush;
+			std::cin >> check_pass;
+			int cmd_return = check_lockyou.check_script(check_pass);
+			int cmd_return2 = check_repeat.check_repeat_fn(check_pass);
 			break;
 		}
 		default:
