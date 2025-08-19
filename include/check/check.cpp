@@ -1,13 +1,28 @@
 #include "check.hpp"
 
-Check_lockyou::Check_lockyou()
+Check::Check() {}
+void Check::check_func()
 {
-	script_return_value = 128;
+	std::cout << "Checker>Password to be confirmed:" << std::flush;
+	std::cin >> check_pass;
+
+	std::cout << "lockyou: [  ]\n";
+	std::cout << "repeat : [  ]\n";
+	std::cout << "\033[2A\033[10C";
+	int cmd_return = check_lockyou();
+	std::cout << (cmd_return == 0 ? "\033[32mOK\033[0m" : "\033[31mNG\033[0m");
+
+	std::cout << "\033[B\033[2D";
+	int cmd_return2 = check_repeat();
+	std::cout << (cmd_return2 == 0 ? "\033[32mOK\033[0m" : "\033[31mNG\033[0m");
+
+	std::cout << std::endl;
 }
-int Check_lockyou::check_script(std::string check_pass)
+
+int Check::check_lockyou()
 {
-	std::string cmd = script_path + " " + check_pass;
-	script_return_value = system(cmd.c_str());
+	std::string cmd = "../script/main.sh " + check_pass;
+	int script_return_value = system(cmd.c_str());
 	if (script_return_value == 0)
 	{
 		return 0;
@@ -18,15 +33,11 @@ int Check_lockyou::check_script(std::string check_pass)
 	}
 }
 
-Check_repeat::Check_repeat()
+int Check::check_repeat()
 {
-	word_count = 0;
-}
-int Check_repeat::check_repeat_fn(std::string check_pass)
-{
-	ans = 0;
+	double ans = 0;
 	std::unordered_map<char, int> count_char;
-	word_count = check_pass.size();
+	int word_count = check_pass.size();
 	for (char c : check_pass)
 	{
 		count_char[c] += 1;

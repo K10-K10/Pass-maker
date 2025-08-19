@@ -30,6 +30,7 @@ int Create::input_length()
 
 std::string Create::pass_creator()
 {
+	std::cout << "1 - number | 2 - number & alphabet | 3 - number,alphabet & mark | 4 - custom | other - exit" << std::endl;
 	std::cout << "Create>" << std::flush;
 	std::cin >> Create::cmd;
 	Create::pass = "";
