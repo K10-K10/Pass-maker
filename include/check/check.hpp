@@ -2,7 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <unordered_map>
-// 	std::string script_path = "../script/main.sh";
+#include <thread>
 
 class Check
 {
@@ -12,6 +12,6 @@ public:
 	void check_func();
 
 private:
-	int check_lockyou();
-	int check_repeat();
+	void check_lockyou();
+	void check_repeat();
 };

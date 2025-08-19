@@ -1,4 +1,5 @@
 #include "check.hpp"
+#include <mutex>
 
 Check::Check() {}
 void Check::check_func()
@@ -8,52 +9,52 @@ void Check::check_func()
 
 	std::cout << "lockyou: [  ]\n";
 	std::cout << "repeat : [  ]\n";
-	std::cout << "\033[2A\033[10C";
-	int cmd_return = check_lockyou();
-	std::cout << (cmd_return == 0 ? "\033[32mOK\033[0m" : "\033[31mNG\033[0m");
 
-	std::cout << "\033[B\033[2D";
-	int cmd_return2 = check_repeat();
-	std::cout << (cmd_return2 == 0 ? "\033[32mOK\033[0m" : "\033[31mNG\033[0m");
-
-	std::cout << std::endl;
+	std::thread lockyou(&Check::check_lockyou, this);
+	std::thread repeat(&Check::check_repeat, this);
+	lockyou.join();
+	repeat.join();
 }
 
-int Check::check_lockyou()
+std::mutex cout_mutex;
+
+void Check::check_lockyou()
 {
 	std::string cmd = "../script/main.sh " + check_pass;
 	int script_return_value = system(cmd.c_str());
-	if (script_return_value == 0)
+
 	{
-		return 0;
-	}
-	else
-	{
-		return 1;
+		std::lock_guard<std::mutex> lock(cout_mutex);
+		std::cout << "\033[2A\033[10C";
+		if (script_return_value == 0)
+			std::cout << "\033[32mOK\033[0m";
+		else
+			std::cout << "\033[31mNG\033[0m";
+		std::cout << "\033[2B\033[10D";
 	}
 }
 
-int Check::check_repeat()
+void Check::check_repeat()
 {
 	double ans = 0;
 	std::unordered_map<char, int> count_char;
 	int word_count = check_pass.size();
 	for (char c : check_pass)
+		count_char[c]++;
+
+	for (auto &p : count_char)
 	{
-		count_char[c] += 1;
-	}
-	double num = 0;
-	for (auto it = count_char.begin(); it != count_char.end(); ++it)
-	{
-		num = static_cast<double>(it->second) / word_count;
+		double num = static_cast<double>(p.second) / word_count;
 		ans += num * num;
 	}
-	if (ans >= 0.3)
+
 	{
-		return 1;
-	}
-	else
-	{
-		return 0;
+		std::lock_guard<std::mutex> lock(cout_mutex);
+		std::cout << "\033[1A\033[10C";
+		if (ans >= 0.3)
+			std::cout << "\033[32mOK\033[0m";
+		else
+			std::cout << "\033[31mNG\033[0m";
+		std::cout << "\033[2B\033[10D";
 	}
 }
