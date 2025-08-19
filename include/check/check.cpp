@@ -39,12 +39,10 @@ int Check_repeat::check_repeat_fn(std::string check_pass)
 	}
 	if (ans >= 0.3)
 	{
-		std::cout << "\033[31mX\033[0m" << std::endl;
 		return 1;
 	}
 	else
 	{
-		std::cout << "\033[32mO\033[0m" << std::endl;
 		return 0;
 	}
 }
