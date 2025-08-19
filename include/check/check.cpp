@@ -28,7 +28,7 @@ void spinner(std::atomic<bool> &done, int row, int col)
 
 void Check::check_func()
 {
-	std::cout << "Checker>Password to be confirmed:" << std::flush;
+	std::cout << "\033[36mChecker>Password to be confirmed:\033[0m" << std::flush;
 	std::cin >> check_pass;
 
 	std::cout << "lockyou: [  ]\n";

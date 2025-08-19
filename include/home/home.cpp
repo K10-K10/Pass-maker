@@ -20,6 +20,13 @@ void Home::home_event()
 		case 1:
 		{
 			pass = create.pass_creator();
+			std::cout << "Do you want to clean? (y,n):" << std::flush;
+			char wait;
+			std::cin >> wait;
+			if (wait == 'y' || wait == 'Y')
+			{
+				std::cout << "\033[4A\033[2K\033[1B\033[2K\033[1B\033[2K\033[1B\033[2K\033[1B" << std::flush;
+			}
 			break;
 		}
 		case 2:
