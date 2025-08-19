@@ -64,12 +64,12 @@ void Check::check_lockyou(std::atomic<bool> &done_flag)
 
 	{
 		std::lock_guard<std::mutex> lock(cout_mutex);
-		std::cout << "\033[2A\033[8C";
+		std::cout << "\033[2A\033[10C";
 		if (script_return_value == 0)
-			std::cout << "\033[32mOK\033[0m";
+			std::cout << "\033[32mOK\033[0m]";
 		else
-			std::cout << "\033[31mNG\033[0m";
-		std::cout << "\033[2B\033[8D" << std::flush;
+			std::cout << "\033[31mNG\033[0m]";
+		std::cout << "\033[2B\033[11D" << std::flush;
 	}
 }
 
