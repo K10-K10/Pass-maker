@@ -3,15 +3,16 @@
 #include <cstdlib>
 #include <unordered_map>
 #include <thread>
+#include <atomic>
 
 class Check
 {
 public:
 	Check();
-	std::string check_pass;
 	void check_func();
 
 private:
-	void check_lockyou();
-	void check_repeat();
+	std::string check_pass;
+	void check_lockyou(std::atomic<bool> &done_flag);
+	void check_repeat(std::atomic<bool> &done_flag);
 };
